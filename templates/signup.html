@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vendors</title>
+        <link rel="stylesheet" href="../static/css/signup.css">
+        <!-- <script src="../static/js/signup.js"></script> -->
+    </head>
+    <body>
+        <a href="/" style="text-decoration: none; background-color: green;
+            padding: 15px;">Go To Home Page</a>
+        <div class="container right-panel-active">
+            <!-- Sign Up -->
+            <div class="container__form container--signup">
+                <i class="text-info text-center">{{response}}</i>
+                <h4 class="text-danger">{{message}}</h4>
+                <form action="/save_vendor" method="post"
+                    enctype="multipart/form-data" class="form" id="form1">
+                    <h2 class="form__title">Sign Up</h2>
+                    <input type="text" name="name" placeholder="name"
+                        class="input" />
+
+                    <input type="email" name="email" placeholder="Email"
+                        class="input" />
+                    <input type="password" name="password"
+                        placeholder="Password" class="input" />
+                    <input type="text" name="phone" placeholder="Phone"
+                        class="input" />
+
+                    <input type="text" name="location" placeholder="Location"
+                        class="input" />
+                    <input type="file" name="image" class="input" />
+                    <!-- <input type="text" name="desc" placeholder="Vendor Description"
+                    class="input" /> -->
+                    <textarea name="desc" cols="20" rows="10"
+                        class="input"></textarea>
+
+                    <button type="submit" class="btn">Sign Up</button>
+                </form>
+            </div>
+
+            <!-- Sign In -->
+            <div class="container__form container--signin">
+                <i class="text-info text-center">{{response}}</i>
+                <h4 class="text-danger">{{message}}</h4>
+                <form action="/signin" method="post" class="form" id="form2">
+                    <h2 class="form__title">Sign In</h2>
+
+                    <input type="text" name="username" placeholder="Username"
+                        class="input" />
+                    <input type="password" placeholder="Password"
+                        name="password" class="input"
+                        />
+
+                    <a href="/change_password" class="link">Forgot your password?</a>
+                    <button type="submit" class="btn">Sign In</button>
+                </form>
+            </div>
+
+            <!-- Overlay -->
+            <div class="container__overlay">
+                <div class="overlay">
+                    <div class="overlay__panel overlay--left">
+                        <button class="btn" id="signIn">Sign In</button>
+                    </div>
+                    <div class="overlay__panel overlay--right">
+                        <button class="btn" id="signUp">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="../static/js/signup.js"></script>
+    </body>
+</html>

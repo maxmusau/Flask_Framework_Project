@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Vendor </title>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
+<link rel="stylesheet" href="../static/css/bootstrap.css">
+
+<style>
+@import u rl("https://fonts.googleapis.com/css?family=Montserrat:600");
+@import u rl("https://fonts.googleapis.com/css?family=Montserrat:800");
+@import u rl("https://fonts.googleapis.com/css?family=Montserrat");
+
+body {
+font-family: "Montserrat", sans-serif;
+background: linear-gradient(270deg, #ffead1, #ffb6bd, #e0b5ff);
+
+background-size: 150% 150%;
+animation: backgroundAnimation 10s ease infinite;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100vw;
+height: 100vh;
+margin: 0;
+}
+
+.profile {
+animation: loadProfile 0.6s ease-in-out;
+animation-fill-mode: both;
+font-size: 0.9rem;
+display: flex;
+flex-direction: column;
+position: relative;
+max-height: 780px;
+width:750px;
+
+}
+
+.profile-bg {
+position: absolute;
+bottom: 0;
+right: 0;
+border-radius: 10px;
+background: white;
+box-shadow: 0 30px 50px -20px rgba(14, 0, 47, 0.21);
+width: calc(100% - 75px);
+height: calc(100% - 110px);
+z-index: -1;
+}
+
+.container {
+display: flex;
+flex-direction: row;
+align-items: stretch;
+width: 100%;
+}
+
+.profile-image {
+animation: loadProfileImage 1s ease-in-out 0.5s;
+animation-fill-mode: both;
+position: relative;
+border-radius: 10px;
+box-shadow: 0 25px 45px -20px rgba(255, 0, 47, 0.3),
+inset 0 0px 120px rgba(255, 0, 47, 0.2);
+width: 45%;
+flex: none;
+background-image: url("../static/images/{{session['image']}}");
+background-size: cover;
+background-position: center;
+}
+
+.profile-image::before {
+content: "";
+position: absolute;
+width: 100%;
+height: 100%;
+border-radius: 10px;
+background-color: #000;
+opacity: 0.2;
+mix-blend-mode: screen;
+}
+
+.camera {
+color: #FFFF;
+position: absolute;
+bottom: 28px;
+left: 28px;
+font-size: 1.3rem;
+}
+
+.profile-info {
+margin-top: 120px;
+padding: 8% 8% 2% 8%;
+position: relative;
+}
+
+.profile-info h1 {
+font-size: 3rem;
+font-weight: 800;
+margin: 0.7rem;
+position: absolute;
+animation-fill-mode: both;
+}
+
+h1.first-name {
+animation: titleEffect 1s cubic-bezier(0, 0.2, 0.4, 1);
+top: -115px;
+left: -85px;
+}
+
+h1.second-name {
+animation: titleEffect 1s cubic-bezier(0, 0, 0.3, 1);
+/* top: -50px;
+left: -45px; */
+}
+
+.profile-info h2 {
+font-size: 1rem;
+font-weight: 600;
+letter-spacing: 0.2rem;
+margin-top: 0;
+margin-bottom: 5%;
+}
+
+.social-media-icons a,
+.profile-info h2 {
+color: #f63d47;
+}
+
+.profile-info p {
+line-height: 1.5rem;
+}
+
+.social-media-icons {
+display: flex;
+}
+
+.social-media-icons a {
+margin-top: 7%;
+font-size: 1.2rem;
+flex: auto;
+text-align: center;
+}
+
+.camera,
+.social-media-icons a {
+transition: text-shadow 0.5s ease;
+}
+
+.camera:hover,
+.social-media-icons a:hover {
+text-shadow: 0px 5px 15px rgba(255, 0, 47, 0.45);
+}
+
+.statistics {
+margin-right: 10px;
+margin-left: 10px;
+line-height: 2rem;
+display: flex;
+flex-direction: row;
+align-items: center;
+}
+
+.statistics p {
+margin: 3%;
+flex: auto;
+color: #f63d47;
+}
+
+.statistics p strong {
+font-size: 1.4rem;
+color: #000;
+font-weight: 200;
+margin-right: 0.3rem;
+}
+
+.icon {
+background: transparent no-repeat center;
+background-size: contain;
+background-origin: content-box;
+width: 60px;
+height: 60px;
+padding: 15px;
+border: none;
+transition: transform 0.5s ease;
+}
+
+.icon:hover {
+transform: scale(0.9);
+}
+
+.arrow {
+flex: 0 1 75px;
+background-image: u rl("https://zephyo.github.io/22Days/code/3/graphics/arrow.svg");
+}
+
+.right {
+transform: rotate(180deg);
+}
+
+.right:hover {
+transform: scale(0.9) rotate(180deg);
+}
+
+.close {
+background-image: u rl("https://zephyo.github.io/22Days/code/3/graphics/close.svg");
+position: absolute;
+top: 5px;
+right: 10px;
+}
+
+@media only screen and (max-aspect-ratio: 4/7) and (max-width: 600px) {
+.profile {
+margin: 3%;
+height: 97%;
+}
+
+.container {
+height: 86%;
+flex-direction: column;
+}
+
+.profile-image {
+height: 40%;
+width: calc(100% - 90px);
+}
+
+.profile-bg {
+width: 100%;
+}
+
+h1.first-name {
+left: 10px;
+}
+
+h1.second-name {
+left: 60px;
+}
+}
+
+@media screen and (min-aspect-ratio: 4/7) {
+.profile {
+margin-left: 10%;
+margin-right: 10%;
+}
+}
+
+@keyframes backgroundAnimation {
+0% {
+background-position: 0% 50%;
+}
+
+50% {
+background-position: 100% 50%;
+}
+
+100% {
+background-position: 0% 50%;
+}
+}
+
+@keyframes loadProfile {
+from {
+transform: translateY(100px);
+opacity: 0;
+}
+
+to {
+transform: translateY(0px);
+opacity: 1;
+}
+}
+
+@keyframes loadProfileImage {
+from {
+transform: translateY(50px);
+opacity: 0;
+}
+
+to {
+transform: translateY(0px);
+opacity: 1;
+}
+}
+
+@keyframes titleEffect {
+from {
+opacity: 0;
+transform: translateX(-75px);
+}
+
+to {
+transform: translateX(0px);
+opacity: 1;
+}
+}
+ 
+
+</style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../static/css/bootstrap.css">
+<script src="../static/js/bootstrap.js"></script>
+</head>
+<!-- comments here --> 
+<body>
+<main class="profile">
+<div class="profile-bg"></div>
+<section class="container">
+<aside class="profile-image">
+<a class="camera" href="#">
+<i class="fas fa-camera"></i>
+</a>
+</aside>
+<section class="profile-info">
+<h1 class="first-name text-white">{{session['key']}} <span class="second-name text-danger">Stores
+</span> </h1>
+
+<h2>ABOUT</h2>
+<p>
+  {{session['desc']}}
+   <!-- Hello, Max Stores is a  company that provides inventory for boutique clothing stores 🌱. A store places an order with the company 🌿 , detailing what products it wants as well as how many of each product 🌼.  -->
+
+
+</p>
+<p>signed in as {{session['key']}}</p>
+<p><span class="fa fa-map-marker text-danger " style="font-size: 3cqb;"></span>   : {{session['location']}}</p>
+<p> <a href="/logout">Logout</a></p>
+
+<aside class="social-media-icons">
+<a href="https://twitter.com/zephybite" target="_blank">
+<i class="fab fa-twitter"></i>
+</a>
+<a href="https://codepen.io/zephyo" target="_blank">
+<i class="fab fa-codepen"></i>
+</a>
+<a href="https://github.com/zephyo" target="_blank">
+<i class="fab fa-github"></i>
+</a>
+
+</a>
+<a href="https://medium.com/@zephyo" target="_blank">
+<i class="fab fa-medium"></i>
+</a>
+</aside>
+</section>
+</section>
+<section class="statistics">
+<button class="icon arrow left"></button>
+<button class="icon arrow right"></button>
+<!--launch modal button -->
+<p><button class="btn btn-outline-dark" type="button" data-bs-toggle="modal" data-bs-target="#mymodal">Add Product</button></p>
+
+
+
+<!-- <p><a href="#" class="btn btn-outline-dark">Add Product</a></p> -->
+<p><a href="/vendor_products/{{session['id']}}" class="btn btn-outline-dark">View Products</a></p>
+<p><a href="#" class="btn btn-outline-dark">Earnings</a></p>
+
+</section>
+<button class="icon close"></button>
+</main>
+
+
+<!-- modal -->
+<div class="card shadow p-2">
+<div class="modal p-2"  role="dialog" id="mymodal">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title text-center">Upload Product</h5>
+         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <div class="modal-body">
+         <!-- form to upload products -->
+         <form action="/add_product"  method="post" enctype="multipart/form-data">
+            <!-- <label >Vendor Id</label><br> -->
+            <input type="number" dissabled  value="{{session['id']}}" name="vendor_id" > <br>
+            <label >Product  Name</label><br>
+            <input type="text" name="product_name" > <br>
+            <label >Product  Description</label><br>
+            <textarea name="product_desc" id="" cols="20" rows="4"></textarea> <br>
+            <label >Product  Category</label><br>
+            <input type="text" name="product_category" > <br>
+            <label >Product  Cost</label><br>
+            <input type="number" name="product_cost" > <br>
+            <label >Product  Discount</label><br>
+            <input type="number" name="product_discount" > <br>
+            <label >Product  Brand</label><br>
+            <input type="text" name="product_brand" > <br>
+            <label >Product Image</label><br>
+            <input type="file" name="product_image" > <br>
+            <button type="submit" class="btn btn-primary">Upload Product</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+             </form>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>
+</body>
+
+</html>
+

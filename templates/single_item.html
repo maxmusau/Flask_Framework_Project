@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+       <head>
+              <meta charset="UTF-8">
+              <title>Single item</title>
+              <link rel="stylesheet" href="../static/css/bootstrap.css">
+              <script src="../static/files/js/bootstrap.bundle.min.js"></script>
+              <link rel="stylesheet" href="../static/index.css">
+              <script src="../static/index.js"></script>
+       </head>
+       <body>
+              {% include 'navbar.html' %}
+              <br><br>
+              <div class="container-fluid">
+
+                     <section class="row">
+                            <div class="col-md-4">
+                                   <img src="../static/images/{{product[8]}}"
+                                          alt="" width="300" height="300"
+                                          class="img-thumbnail shadow p-4"><br><br>
+                                   <h3>{{ product[2] }}</h3>
+                            </div>
+
+                            <div class="col-md-8">
+                                   <p class="text-muted">{{ product[3] }}</p>
+                                   <h4> COST: KES {{ product[4] }}</h4>
+                                   <b>Discount: KES{{ product[5] }}</b>
+                                   <b class="text-danger">Category: {{
+                                          product[6] }}</b> <br>
+                                   <b class="text-danger">Brand: {{ product[7]
+                                          }}</b>
+                                   <br>
+                            </div>
+                     </section>
+                     <br>
+                     <!-- payment form -->
+                     {% if 'user' in session %}
+                     <form action="/mpesa_payment" method="post">
+                            <input type="number" name="amount" value="{{ product[4] }}">
+                            <br>
+                            <input type="text"  name="phone"  placeholder="Phone No.
+                                   +2547******"><br>
+                            <input type="submit" value="Pay" class="btn
+                                   btn-success">
+                     </form>
+                     {% else %}
+                     <i>Signin To Buy this product</i>
+                     <a href="/login" class="btn btn-primary p-2">Signin</a>
+                     {% endif %}
+
+
+
+                     <br>
+
+                     <!-- ADD THIS CODE  -->
+                     <h4>More Like This</h4>
+                     <section class="row">
+                            {% for item in similar %}
+                            <div class="col-md-3">
+                                   <img src="../static/images/{{item[8]}}"
+                                          alt="" width="200" height="200">
+                                   <br>
+                                   <b>{{item[2]}}</b> <br>
+                                   <p class="text-muted">KES {{item[4]}}</p>
+
+
+                                   <a href='' class="btn btn-warning">Buy Now</a>
+                                   <br><br>
+                            </div>
+                            {% endfor %}
+                     </section>
+              </div>
+       </body>
+</html>

@@ -1,0 +1,70 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>All Products</title>
+        <link rel="stylesheet" href="../static/css/vendor_products.css">
+        <link rel="stylesheet" href="../static/css/bootstrap.css">
+        <link rel="stylesheet" href="../static/index.css">
+        <script src="../static/index.js"></script>
+    </head>
+    <body>
+        {% include 'navbar.html' %}
+        <!-- access vendor_products.css using url below -->
+        <!-- https://justpaste.it/bcchz -->
+        <br><br>
+        <i style="text-align: left;color: blue;background-color:
+            aqua;padding: 20px;" class="text-start">Electronics Category</i>
+        <main class="page-content me-3">
+
+            {% for record in data %}
+            <div class="card shadow ">
+                <div style="background-image:
+                    url(../static/images/{{record[8]}});background-repeat:
+                    no-repeat;width:100%;background-size:cover;height:210px">
+                    <div class="content">
+                        <h2 class="title">{{record[2]}}</h2>
+                        <p class="copy">{{record[3]}}</p>
+                        <p class="copy"><span style="color:blue">Cost</span>
+                            {{record[4]}}</p>
+                        <p class="copy"><span style="color:rgb(255, 0, 170)">Discount</span>
+                            {{record[5]}}</p>
+                        <!-- <button class="btn">Book Now</button> -->
+                        <a class="btn" style="text-decoration:
+                            none;background-color: red;"
+                            href="/single_item/{{record[0]}}">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </main>
+
+        <!-- Shoes Category -->
+        <br><br>
+        <i style="text-align: left;color: blue;background-color:
+            aqua;padding: 20px;" class="text-start">Shoes Category</i>
+        <main class="page-content">
+
+            {% for record in shoes %}
+            <div class="card shadow me-3" style="background-image:
+                url(../static/images/{{record[8]}});background-repeat:
+                no-repeat;background-size: cover;align-items:
+                center;">
+                <div class="content">
+                    <h2 class="title">{{record[2]}}</h2>
+                    <p class="copy">{{record[3]}}</p>
+                    <p class="copy"><span style="color:blue">Cost</span>
+                        {{record[4]}}</p>
+                    <p class="copy"><span style="color:rgb(255, 0, 170)">Discount</span>
+                        {{record[5]}}</p>
+                    <!-- <button class="btn">Book Now</button> -->
+                    <a class="btn" style="text-decoration:
+                        none;background-color: red;"
+                        href="/single_item/{{record[0]}}">Buy Now</a>
+                </div>
+            </div>
+            {% endfor %}
+        </main>
+    </body>
+</html>

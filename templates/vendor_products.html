@@ -1,0 +1,34 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vendor Products</title>
+        <link rel="stylesheet" href="../static/css/vendor_products.css">
+    </head>
+    <body>
+        <!-- access vendor_products.css using url below -->
+        <!-- https://justpaste.it/bcchz -->
+        <main class="page-content">
+            {% for record in data %}
+            <div class="card" style="background-image:
+                url(../static/images/{{record[8]}});background-repeat:
+                no-repeat;background-size: cover;align-items:
+                center;">
+                <div class="content">
+                    <h2 class="title">{{record[2]}}</h2>
+                    <p class="copy">{{record[3]}}</p>
+                    <p class="copy"><span style="color:blue">Cost</span>
+                        {{record[4]}}</p>
+                    <p class="copy"><span style="color:rgb(255, 0, 170)">Discount</span>
+                        {{record[5]}}</p>
+                    <!-- <button class="btn">Book Now</button> -->
+                    <a class="btn" style="text-decoration:
+                        none;background-color: red;"
+                        href="/delete/{{record[0]}}">Delete</a>
+                </div>
+            </div>
+            {% endfor %}
+        </main>
+    </body>
+</html>

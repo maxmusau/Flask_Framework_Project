@@ -1,0 +1,23 @@
+<header>
+    <div class="company-logo">D</div>
+    <nav class="navbar">
+        <ul class="nav-items">
+            <li class="nav-item"><a href="/" class="nav-link">HOME</a></li>
+            <li class="nav-item"><a href="/save_vendor"
+                    class="nav-link">Sell product</a></li>
+            <li class="nav-item"><a href="/getproducts" class="nav-link">SHOP</a></li>
+            {% if session['user']%}
+            <i style="color:rgb(0, 255, 47);font-size: 25px;">{{session['user']}}</i>
+            <li class="nav-item"><a href="/logout/user" class="nav-link">Logout</a></li>
+            <li class="nav-item"><a href="/edit/{{session['user']}}" class="nav-link">Edit</a></li>
+            {% else %}
+            <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
+            <li class="nav-item"><a href="/register" class="nav-link">Signup</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <div class="menu-toggle">
+        <i class="bx bx-menu"></i>
+        <i class="bx bx-x"></i>
+    </div>
+</header>
